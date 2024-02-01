@@ -2,4 +2,4 @@ Resources:
   MyBucket:
     Type: 'AWS::S3::Bucket'
     Properties:
-      BucketName: my-cloudformation-bucket
+      BucketName: helens-bucket-for-010224
