@@ -1,23 +1,23 @@
 name: Deploy CloudFormation Template
 on:
- push:
- branches:
- - main
- workflow_dispatch:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
 jobs:
- deploy:
- runs-on: ubuntu-latest
- steps:
- - name: Checkout Code
- uses: actions/checkout@v2
-- name: Deploy CloudFormation Stack
- uses: aws-actions/configure-aws-credentials@v1
- with:
- aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
- aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
- aws-region: eu-central-1
-- name: Deploy to AWS CloudFormation
-  uses: aws-actions/aws-cloudformation-github-deploy@v1
-  with:
-    name: MyStack
-    template: template.yaml
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v2
+      - name: Deploy CloudFormation Stack
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: eu-central-1
+      - name: Deploy to AWS CloudFormation
+        uses: aws-actions/aws-cloudformation-github-deploy@v1
+        with:
+          name: MyStack
+          template: template.yaml
